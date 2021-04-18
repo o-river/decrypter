@@ -36,7 +36,7 @@ h2 {
 }
 
 .time-container {
-	font-size: 5rem;
+	font-size: 10rem;
 	color: red;
 }
 
@@ -60,7 +60,8 @@ h2 {
 }
 
 .decrypted-code {
-	border: none;
+	border: 2px solid lightgray;
+	padding: 1rem;
 	font-size: 3rem;
 	color: darkblue;
 	text-align: center;
