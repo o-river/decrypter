@@ -96,7 +96,19 @@ function encrypt(plaintext, key) {
 //複合チェッカー
 
 function checker() {
+	if (document.decrypt.code == localStorage.plaintext) {
+		document.timer.elements[2].disabled=false;
+		clearInterval(timer1);
+		alert("正解です！")
+		document.settings.style.display = "";
+	}else {
+		alert("残念！違います")
+	}
+}
 
+function setPlaintext() {
+	localStorage.plaintext = document.settings.plaintext.value;
+	document.settings.style.display = "none";
 }
 
 
@@ -116,7 +128,7 @@ function checker() {
 						<input type="number" class="time" value="00">
 					</span><br>
 					<input type="button" class="controler" value="スタート" onclick="cntStart()">
-					<input type="button" class="controler" value="ストップ" onclick="cntStop()">
+					<input type="button" class="controler" value="ストップ" onclick="cntStop()"><br>
 					<input type="button" class="controler" value="リセット" onclick="cntReset()">
 					<input type="button" class="controler" value="クリア" onclick="cntClear()">
 				</form>
@@ -130,8 +142,14 @@ function checker() {
 		<article class="decrypt-container">
 			<h2>解読結果</h2>
 			<form name="decrypt">
-				<input type="text" class="decrypted-code" value="" placeholder="解読結果を入力"><br>
+				<input type="text" name="code" class="decrypted-code" value="" placeholder="解読結果を入力"><br>
 				<input type="button" class="controler" value="決定" onclick="checker()">
+			</form>
+		</article>
+		<article class="settings-container">
+			<form name="settings">
+				<input type="text" name="plaintext" value="">
+				<input type="button" name="set" value="平文セット" onclick="setPlaintext()">
 			</form>
 		</article>
 	</body>
