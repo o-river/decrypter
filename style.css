@@ -2,6 +2,9 @@
 	--main-bgcolor: gray;
 	--main-textcolor: black;
 }
+html {
+	font-size: 10px;
+}
 body {
 	text-align: center;
 }
@@ -13,19 +16,23 @@ header {
 	background-color: var(--main-bgcolor);
 }
 
+h1 {
+	font-size: 3rem;
+}
+
 .timer {
 
 }
 
 .display-container {
-	font-size: 2rem;
+	font-size: 5rem;
 	color: red;
 }
 
 .display {
 	border: none;
-	width: 3rem;
-	font-size: 2rem;
+	width: 15rem;
+	font-size: 5rem;
 	color: red;
 	text-align: center;
 }
