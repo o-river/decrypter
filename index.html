@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>暗号を解読せよ！</title>
-		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
 		<script type="text/javascript">
 
 var timer1; //タイマーを格納する変数（タイマーID）の宣言
@@ -11,20 +11,20 @@ var timer1; //タイマーを格納する変数（タイマーID）の宣言
 
 //カウントダウン関数を1000ミリ秒毎に呼び出す関数
 function cntStart(){
-  document.controler.elements[2].disabled=true;
+  document.timer.elements[2].disabled=true;
   timer1=setInterval("countDown()",1000);
 }
 
 //タイマー停止関数
 function cntStop(){
-  document.controler.elements[2].disabled=false;
+  document.timer.elements[2].disabled=false;
   clearInterval(timer1);
 }
 
 //カウントダウン関数
 function countDown(){
-  var min=document.controler.elements[0].value;
-  var sec=document.controler.elements[1].value;
+  var min=document.timer.elements[0].value;
+  var sec=document.timer.elements[1].value;
 
   if( (min=="") && (sec=="") ){
     alert("時刻を設定してください！");
@@ -51,37 +51,39 @@ function tmWrite(int){
   }
   else{
     //残り分数はintを60で割って切り捨てる
-    document.controler.elements[0].value=Math.floor(int/60);
+    document.timer.elements[0].value=Math.floor(int/60);
     //残り秒数はintを60で割った余り
-    document.controler.elements[1].value=int % 60;
+    document.timer.elements[1].value = zeroPadding(int % 60, 2);
   }
 }
 
 //フォームを初期状態に戻す（リセット）関数
 function reSet(){
-  document.controler.elements[0].value="0";
-  document.controler.elements[1].value="0";
-  document.controler.elements[2].disabled=false;
+  document.timer.elements[0].value="0";
+  document.timer.elements[1].value="00";
+  document.timer.elements[2].disabled=false;
   clearInterval(timer1);
 }
+
+// NUM=値 LEN=桁数
+function zeroPadding(NUM, LEN){
+	return ( Array(LEN).join('0') + NUM ).slice( -LEN );
+}
+
+
 		</script>
 	</head>
 	<body>
 		<header>
 			<h1>交信して暗号を解読せよ！</h1>
 		</header>
-		<article class="timer">
-			<div class="time">
-
-			</div>
-			<div class="control">
-				<form name="controler">
-					<input type="number" class="display" value="">:
-					<input type="number" class="display" value=""><br>
-					<input type="button" value="スタート" onclick="cntStart()">
-					<input type="button" value="ストップ" onclick="cntStop()">
+		<article class="timer-container">
+				<form name="timer">
+					<input type="number" class="display" value="0">:
+					<input type="number" class="display" value="00"><br>
+					<input type="button" class="controler" value="スタート" onclick="cntStart()">
+					<input type="button" class="controler" value="ストップ" onclick="cntStop()">
 				</form>
-			</div>
 		</article>
 	</body>
 </html>

@@ -2,8 +2,13 @@
 	--main-bgcolor: gray;
 	--main-textcolor: black;
 }
+body {
+	text-align: center;
+}
+
 header {
 	margin: 1rem;
+	padding: 1rem;
 	border: 3px solid var(--main-textcolor);
 	background-color: var(--main-bgcolor);
 }
@@ -12,6 +17,13 @@ header {
 
 }
 
+.display-container {
+	font-size: 10rem;
+	color: red;
+}
+
 .display {
 	border: none;
+	width: 50rem;
+	text-align: center;
 }
