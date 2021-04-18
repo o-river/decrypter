@@ -96,7 +96,7 @@ function encrypt(plaintext, key) {
 //複合チェッカー
 
 function checker() {
-	if (document.decrypt.code == localStorage.plaintext) {
+	if (document.decrypt.code.value == localStorage.plaintext) {
 		document.timer.elements[2].disabled=false;
 		clearInterval(timer1);
 		alert("正解です！")
