@@ -1,9 +1,9 @@
 :root {
-	--main-bgcolor: gray;
+	--main-bgcolor: lightgray;
 	--main-textcolor: black;
 }
 html {
-	font-size: 10px;
+	font-size: 20px;
 }
 body {
 	text-align: center;
@@ -16,23 +16,49 @@ header {
 	background-color: var(--main-bgcolor);
 }
 
+article {
+	margin: 2rem;
+	margin-bottom: 5rem;
+}
+
 h1 {
 	font-size: 3rem;
+}
+h2 {
+	margin: 1rem;
+	margin-top: 2rem;
+	font-size: 2rem;
+	color: darkgray;
 }
 
 .timer {
 
 }
 
-.display-container {
+.time-container {
 	font-size: 5rem;
 	color: red;
 }
 
-.display {
+.time {
 	border: none;
 	width: 15rem;
 	font-size: 5rem;
 	color: red;
+	text-align: center;
+}
+
+.crypt {
+	border: none;
+	font-size: 3rem;
+	color: darkgreen;
+	text-align: center;
+}
+
+.decrypted-code {
+	border: none;
+	width: 15rem;
+	font-size: 3rem;
+	color: darkblue;
 	text-align: center;
 }

@@ -78,14 +78,28 @@ function zeroPadding(NUM, LEN){
 			<h1>交信して暗号を解読せよ！</h1>
 		</header>
 		<article class="timer-container">
+			<h2>残り時間</h2>
 				<form name="timer">
-					<span class="display-container">
-						<input type="number" class="display" value="0">:
-						<input type="number" class="display" value="00">
+					<span class="time-container">
+						<input type="number" class="time" value="0">:
+						<input type="number" class="time" value="00">
 					</span><br>
 					<input type="button" class="controler" value="スタート" onclick="cntStart()">
 					<input type="button" class="controler" value="ストップ" onclick="cntStop()">
 				</form>
+		</article>
+
+		<article class="crypt-container">
+			<h2>暗号は…</h2>
+			<div class="crypt"></div>
+		</article>
+
+		<article class="decrypt-container">
+			<h2>解読結果</h2>
+			<form name="decrypt">
+				<input type="text" class="decrypted-code" value="" placeholder="解読結果を入力"><br>
+				<input type="button" class="controler" value="決定" onclick="checker()">
+			</form>
 		</article>
 	</body>
 </html>
