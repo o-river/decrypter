@@ -2,6 +2,11 @@
 	--main-bgcolor: whitesmoke;
 	--main-textcolor: black;
 }
+@font-face {
+	font-family: "dseg";
+	font-weight: normal;
+	src: url(DSEG7Classic-BoldItalic.woff);
+}
 html {
 	font-size: 20px;
 }
@@ -37,6 +42,7 @@ h2 {
 
 .time-container {
 	font-size: 10rem;
+	font-family: "dseg";
 	color: red;
 }
 
@@ -44,6 +50,7 @@ h2 {
 	border: none;
 	width: 15rem;
 	font-size: 10rem;
+	font-family: "dseg";
 	color: red;
 	text-align: center;
 }
@@ -62,6 +69,7 @@ h2 {
 .decrypted-code {
 	border: 2px solid lightgray;
 	padding: 1rem;
+	margin-bottom: 1rem;
 	font-size: 3rem;
 	color: darkblue;
 	text-align: center;
