@@ -1,0 +1,17 @@
+:root {
+	--main-bgcolor: gray;
+	--main-textcolor: black;
+}
+header {
+	margin: 1rem;
+	border: 3px solid var(--main-textcolor);
+	background-color: var(--main-bgcolor);
+}
+
+.timer {
+
+}
+
+.display {
+	border: none;
+}
