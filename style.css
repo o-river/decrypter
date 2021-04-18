@@ -18,12 +18,14 @@ header {
 }
 
 .display-container {
-	font-size: 10rem;
+	font-size: 2rem;
 	color: red;
 }
 
 .display {
 	border: none;
-	width: 50rem;
+	width: 3rem;
+	font-size: 2rem;
+	color: red;
 	text-align: center;
 }
