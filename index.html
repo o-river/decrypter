@@ -119,6 +119,8 @@ var m = Letters.length;
 var conversionTable = {"A":"A","B":"B","C":"C","D":"D","E":"E","F":"F","G":"G","H":"H","J":"J","I":"I","K":"K","L":"L","M":"M","N":"N","O":"O","P":"P","Q":"Q","R":"R","S":"S","T":"T","U":"U","V":"V","W":"W","X":"X","Y":"Y","Z":"Z"}
 
 function affine(a = 5, b = 11) {
+	a = parseInt(a);
+	b = parseInt(b);
 	for (var x = 0; x < m; x++) {
 		var y = (a * x + b) % m;
 		conversionTable[Letters[x]] = Letters[y];
