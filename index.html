@@ -121,6 +121,7 @@ var conversionTable = {"A":"A","B":"B","C":"C","D":"D","E":"E","F":"F","G":"G","
 function affine(a = 5, b = 11) {
 	a = parseInt(a);
 	b = parseInt(b);
+	console.log("a:" + a + " b:" + b);
 	for (var x = 0; x < m; x++) {
 		var y = (a * x + b) % m;
 		conversionTable[Letters[x]] = Letters[y];
