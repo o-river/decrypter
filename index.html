@@ -88,9 +88,32 @@ function zeroPadding(NUM, LEN){
 
 //暗号
 
-function encrypt(plaintext, key) {
-	var encryptedtext;
+function encrypt(plaintext) {
+	var encryptedtext = "";
+	for (var i = 0; i < plaintext.length; i++) {
+		encryptedtext += conversionTable[plaintext[i]];
+	}
+	return encryptedtext;
+}
 
+function decrypt(encryptedtext) {
+	var decryptedtext = "";
+	for (var letter in encryptedtext) {
+		decryptedtext += ;
+	}
+}
+
+
+var Letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var m = Letters.length;
+
+var conversionTable = {"A":"A","B":"B","C":"C","D":"D","E":"E","F":"F","G":"G","H":"H","J":"J","I":"I","K":"K","L":"L","M":"M","N":"N","O":"O","P":"P","Q":"Q","R":"R","S":"S","T":"T","U":"U","V":"V","W":"W","X":"X","Y":"Y","Z":"Z"}
+
+function affine(a = 5, b = 11) {
+	for (var x = 0; x < m; x++) {
+		var y = (a * x + b) % m;
+		conversionTable[Letters[x]] = Letters[y];
+	}
 }
 
 //複合チェッカー
@@ -107,6 +130,7 @@ function checker() {
 }
 
 function setPlaintext() {
+	affine(document.settings.keyA.value, document.settings.keyB.value);
 	localStorage.plaintext = document.settings.plaintext.value;
 	document.settings.style.display = "none";
 }
@@ -148,6 +172,8 @@ function setPlaintext() {
 		<article class="settings-container">
 			<form name="settings">
 				<input type="text" name="plaintext" value="">
+				a:<input type="number" class="keys" name="keyA" value="5">
+				b:<input type="number" class="keys" name="keyB" value="11">
 				<input type="button" name="set" value="平文セット" onclick="setPlaintext()">
 			</form>
 		</article>
