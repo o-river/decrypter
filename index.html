@@ -14,6 +14,12 @@ function cntStart(){
 	localStorage.minute = document.timer.elements[0].value;
 	localStorage.second = document.timer.elements[1].value;
   document.timer.elements[2].disabled = true;
+	var times = parseInt(document.settings.times.value);
+	var text = document.settings.plaintext.value;
+	for (var i = 0; i < times; i++) {
+		text = encrypt(text);
+	}
+	document.getElementsByClassName('crypt')[0].innerHTML = text;
   timer1=setInterval("countDown()",1000);
 }
 
@@ -96,11 +102,15 @@ function encrypt(plaintext) {
 	return encryptedtext;
 }
 
-// function decrypt(encryptedtext) {
-// 	var decryptedtext = "";
-// 	for (var letter in encryptedtext) {
-// 	}
-// }
+function decrypt(encryptedtext) {
+	var decryptedtext = "";
+	for (var i = 0; i < encryptedtext.length; i++) {
+		var result = Object.keys(conversionTable).filter(function(k) { return conversionTable[k] == encryptedtext[i]})[0];
+		if (result !== undefined) decryptedtext += result;
+	}
+	return decryptedtext;
+
+}
 
 
 var Letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
@@ -173,6 +183,7 @@ function setPlaintext() {
 				<input type="text" name="plaintext" value="">
 				a:<input type="number" class="keys" name="keyA" value="5">
 				b:<input type="number" class="keys" name="keyB" value="11">
+				回数:<input type="number" class="keys" name="times" value="2">
 				<input type="button" name="set" value="平文セット" onclick="setPlaintext()">
 			</form>
 		</article>
