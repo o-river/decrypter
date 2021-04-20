@@ -67,7 +67,7 @@ function tmWrite(int){
 }
 
 function UpperCase() {
-	document.settings.plaintext.value = document.settings.plaintext.value.toUpperCase;
+	document.settings.plaintext.value = document.settings.plaintext.value.toUpperCase();
 }
 
 
@@ -191,7 +191,7 @@ function setPlaintext() {
 		</article>
 		<article class="settings-container">
 			<form name="settings">
-				平文:<input type="text" name="plaintext" value="">
+				平文:<input type="text" name="plaintext" value="" onchange="UpperCase()" onclick="UpperCase()">
 				a:<input type="number" class="keys" name="keyA" value="5">
 				b:<input type="number" class="keys" name="keyB" value="11">
 				回数:<input type="number" class="keys" name="times" value="2">
