@@ -67,7 +67,7 @@ function tmWrite(int){
 }
 
 function UpperCase() {
-	document.settings.plaintext.value = document.settings.plaintext.value.toUpperCase().replace(/[^\u\l]/i, "");
+	document.settings.plaintext.value = document.settings.plaintext.value.toUpperCase().replace(/[^A-Z]/g, "");
 }
 
 
