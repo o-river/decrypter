@@ -63,12 +63,15 @@ h2 {
 	border: 1pt solid black;
 }
 
+#settings {
+	background-color: #fff0f0;
+}
+
 #settings input {
 	font-size: 1rem;
 	border: 2px solid lightgray;
-	margin: 0 0.5rem;
+	margin: 0.5rem;
 	padding: 0.1rem;
-	margin-bottom: 1rem;
 }
 
 .crypt {
@@ -117,5 +120,8 @@ h2 {
 @media only screen and (max-width: 1080px) {
 	.main {
 		display: block;
+	}
+	.decrypted-code {
+		width: 80vw;
 	}
 }
