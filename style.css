@@ -57,10 +57,12 @@ h2 {
 
 .controler {
 	font-size: 2rem;
-	padding: 10px;
-	width: 100px;
-	background-color: whitesmoke;
-	border: 1pt solid black;
+	padding: 10px 1rem;
+	min-width: 100px;
+	background-color: lightgrey;
+	/* border: 1pt solid black; */
+	border: none;
+	border-radius: 5%;
 }
 
 #settings {
