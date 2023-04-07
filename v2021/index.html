@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>暗号を解読せよ！</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript">
+
+var timer1; //タイマーを格納する変数（タイマーID）の宣言
+
+
+//カウントダウン関数を1000ミリ秒毎に呼び出す関数
+function cntStart(){
+	localStorage.minute = document.timer.elements[0].value;
+	localStorage.second = document.timer.elements[1].value;
+  document.timer.elements[2].disabled = true;
+	var times = parseInt(document.settings.times.value);
+	var text = document.settings.plaintext.value;
+	for (var i = 0; i < times; i++) {
+		text = encrypt(text);
+	}
+	document.getElementsByClassName('crypt')[0].innerHTML = text;
+  timer1=setInterval("countUpDown()",1000);
+}
+
+//タイマー停止関数
+function cntStop(){
+  document.timer.elements[2].disabled=false;
+  clearInterval(timer1);
+}
+
+//カウントダウン関数
+function countUpDown(){
+  var min=document.timer.elements[0].value;
+  var sec=document.timer.elements[1].value;
+
+  if( (min=="") && (sec=="") ){
+    alert("時刻を設定してください！");
+    reSet();
+  }
+  else{
+    if (min=="") min=0;
+    min=parseInt(min);
+
+    if (sec=="") sec=0;
+    sec=parseInt(sec);
+
+		if(document.settings.cntup.checked) tmWrite(min*60+sec+1);
+		else tmWrite(min*60+sec-1);
+
+  }
+}
+
+//残り時間を書き出す関数
+function tmWrite(int){
+  int=parseInt(int);
+
+	//残り分数はintを60で割って切り捨てる
+	document.timer.elements[0].value=Math.floor(int/60);
+	//残り秒数はintを60で割った余り
+	document.timer.elements[1].value = zeroPadding(int % 60, 2);
+
+  if (int<=0){
+    cntFinish();
+    alert("時間です！");
+  }
+}
+
+function UpperCase() {
+	document.settings.plaintext.value = document.settings.plaintext.value.toUpperCase().replace(/[^A-Z]/g, "");
+}
+
+
+
+//フォームを初期状態に戻す（リセット）関数
+function cntFinish(){
+  document.timer.elements[0].value="0";
+  document.timer.elements[1].value="00";
+  document.timer.elements[2].disabled=false;
+  clearInterval(timer1);
+}
+
+function cntReset(){
+	if (localStorage.minute === undefined || localStorage.second === undefined) {
+		document.timer.elements[0].value="1";
+    document.timer.elements[1].value="00";
+	}else {
+		document.timer.elements[0].value = localStorage.minute;
+		document.timer.elements[1].value = localStorage.second;
+	}
+}
+function cntClear(){
+  document.timer.elements[0].value="0";
+  document.timer.elements[1].value="00";
+}
+
+// NUM=値 LEN=桁数
+function zeroPadding(NUM, LEN){
+	return ( Array(LEN).join('0') + NUM ).slice( -LEN );
+}
+
+
+//暗号
+
+function encrypt(plaintext) {
+	var encryptedtext = "";
+	for (var i = 0; i < plaintext.length; i++) {
+		encryptedtext += conversionTable[plaintext[i]];
+	}
+	return encryptedtext;
+}
+
+function decrypt(encryptedtext) {
+	var decryptedtext = "";
+	for (var i = 0; i < encryptedtext.length; i++) {
+		var result = Object.keys(conversionTable).filter(function(k) { return conversionTable[k] == encryptedtext[i]})[0];
+		if (result !== undefined) decryptedtext += result;
+	}
+	return decryptedtext;
+
+}
+
+
+var Letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+var m = Letters.length;
+
+var conversionTable = {"A":"A","B":"B","C":"C","D":"D","E":"E","F":"F","G":"G","H":"H","J":"J","I":"I","K":"K","L":"L","M":"M","N":"N","O":"O","P":"P","Q":"Q","R":"R","S":"S","T":"T","U":"U","V":"V","W":"W","X":"X","Y":"Y","Z":"Z"}
+
+function affine(a = 5, b = 11) {
+	a = parseInt(a);
+	b = parseInt(b);
+	console.log("a:" + a + " b:" + b);
+	for (var x = 0; x < m; x++) {
+		var y = (a * x + b) % m;
+		conversionTable[Letters[x]] = Letters[y];
+	}
+}
+
+//複合チェッカー
+
+function checker() {
+	if (document.decrypt.code.value == localStorage.plaintext) {
+		document.timer.elements[2].disabled=false;
+		clearInterval(timer1);
+		alert("正解です！")
+		document.settings.style.display = "";
+	}else {
+		alert("残念！違います")
+	}
+}
+
+function setPlaintext() {
+	affine(document.settings.keyA.value, document.settings.keyB.value);
+	localStorage.plaintext = document.settings.plaintext.value;
+	document.settings.style.display = "none";
+}
+
+
+
+
+		</script>
+	</head>
+	<body>
+		<header>
+			<h1>交信して暗号を解読せよ！</h1>
+		</header>
+		<article class="timer-container">
+			<h2>残り時間</h2>
+				<form name="timer">
+					<span class="time-container">
+						<input type="number" class="time" value="0">:<input type="number" class="time" value="00">
+					</span><br>
+					<input type="button" class="controler" value="スタート" onclick="cntStart()">
+					<input type="button" class="controler" value="ストップ" onclick="cntStop()"><br>
+					<input type="button" class="controler" value="リセット" onclick="cntReset()">
+					<input type="button" class="controler" value="クリア" onclick="cntClear()">
+				</form>
+		</article>
+
+		<article class="crypt-container">
+			<h2>暗号は…</h2>
+			<div class="crypt">　</div>
+		</article>
+
+		<article class="decrypt-container">
+			<h2>解読結果</h2>
+			<form name="decrypt">
+				<input type="text" name="code" class="decrypted-code" value="" placeholder="解読結果を入力"><br>
+				<input type="button" class="controler" value="決定" onclick="checker()">
+			</form>
+		</article>
+		<article class="settings-container">
+			<form name="settings">
+				平文:<input type="text" name="plaintext" value="" onchange="UpperCase()" onclick="UpperCase()">
+				a:<input type="number" class="keys" name="keyA" value="5">
+				b:<input type="number" class="keys" name="keyB" value="11">
+				回数:<input type="number" class="keys" name="times" value="2">
+				カウントアップ:<input type="checkbox" name="cntup" value="">
+
+				<input type="button" name="set" value="平文セット" onclick="setPlaintext()">
+			</form>
+		</article>
+	</body>
+</html>

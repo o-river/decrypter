@@ -15,23 +15,23 @@ body {
 }
 
 header {
-	margin: 1rem 0.5rem;
-	padding: 0.2rem;
+	margin: 1rem;
+	padding: 1rem;
 	border: 3px solid var(--main-textcolor);
 	background-color: var(--main-bgcolor);
 }
 
 article {
-	margin: 0.5rem;
-	margin-bottom: 3rem;
+	margin: 2rem;
+	margin-bottom: 5rem;
 }
 
 h1 {
-	margin: 0.1rem 0;
-	font-size: min(3rem, 6vw);
+	margin: 1rem;
+	font-size: 3rem;
 }
 h2 {
-	margin: 1rem 0;
+	margin: 1rem;
 	font-size: 2rem;
 	color: dimgray;
 }
@@ -41,15 +41,15 @@ h2 {
 }
 
 .time-container {
-	font-size: max(10vw, 5rem);
+	font-size: 10rem;
 	font-family: "dseg";
 	color: red;
 }
 
 .time {
 	border: none;
-	width: max(20vw, 10rem);
-	font-size: max(10vw, 5rem);
+	width: 20rem;
+	font-size: 10rem;
 	font-family: "dseg";
 	color: red;
 	text-align: center;
@@ -57,18 +57,6 @@ h2 {
 
 .controler {
 	font-size: 2rem;
-	padding: 10px;
-	width: 100px;
-	background-color: whitesmoke;
-	border: 1pt solid black;
-}
-
-#settings input {
-	font-size: 1rem;
-	border: 2px solid lightgray;
-	margin: 0 0.5rem;
-	padding: 0.1rem;
-	margin-bottom: 1rem;
 }
 
 .crypt {
@@ -81,7 +69,6 @@ h2 {
 .decrypted-code {
 	border: 2px solid lightgray;
 	padding: 1rem;
-	width: 30vw;
 	margin-bottom: 1rem;
 	font-size: 3rem;
 	color: darkblue;
@@ -90,32 +77,4 @@ h2 {
 
 .keys {
 	width: 2rem;
-}
-
-#convTable {
-	text-align: center;
-	margin: 0 auto;
-}
-/* 
-#left {
-	float: left;
-}
-
-#right {
-	float: right;
-}
-
-#float-clear {
-	clear: both;
-} */
-
-.main {
-	display: flex;
-	justify-content: space-around;
-}
-
-@media only screen and (max-width: 1080px) {
-	.main {
-		display: block;
-	}
 }
