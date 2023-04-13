@@ -35,7 +35,7 @@
 						b:<input type="number" class="keys" name="keyB" value="11">
 						回数:<input type="number" class="keys" name="times" value="2">
 						<br>
-						カウントアップ:<input type="checkbox" name="cntup" value="">
+						カウントアップ:<input type="checkbox" name="cntup" value="" onchange="switchTimeTitle()">
 
 						<input type="button" name="set" value="平文セット" onclick="setPlaintext()">
 					</form>
@@ -66,35 +66,29 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="convBefore">A</td>
-							<td class="convAfter">B</td>
+							<td class="convBefore">-</td>
+							<td class="convAfter">-</td>
 						</tr>
 					</tbody>
 				</table>
 			</article>
 		</div>
+		<footer>
+			<p><a href="./v2021/index.html">2021年ver</a> | <a href="convtable.html">変換表(暗号変数初期値)</a></p>
+			<p>(C) o-river 2023</p>
+		</footer>
 
 		<script type="text/javascript">
 
 			var timer1; //タイマーを格納する変数（タイマーID）の宣言
 			
-			//Enterキーでsubmit対策
-			
-			// var codeForm = document.getElementById('codeForm');
-			// codeForm.addEventListener('keypress', pressEnter);
-			// function pressEnter(e) {
-			//   	if (e.keyCode === 13) {
-			// 		output.innerHTML = codeForm.value;
-			// 		return false;
-			// 	}  
-			// }
-			
+			//Enterキーでsubmit対策			
 			document.getElementById("codeForm").onkeypress = (e) => {
-			  // form1に入力されたキーを取得
-			  const key = e.keyCode || e.charCode || 0;
-			  // 13はEnterキーのキーコード
-			  if (key == 13) {
-				// アクションを行わない
+				// form1に入力されたキーを取得
+				const key = e.keyCode || e.charCode || 0;
+				// 13はEnterキーのキーコード
+				if (key == 13) {
+					// アクションを行わない
 				e.preventDefault();
 			  }
 			}
@@ -112,7 +106,7 @@
 					text = encrypt(text);
 				}
 				document.getElementsByClassName('crypt')[0].innerHTML = text;
-			timer1=setInterval("countUpDown()",1000);
+				timer1 = setInterval("countUpDown()",1000);
 			}
 			
 			//タイマー停止関数
@@ -142,6 +136,11 @@
 			
 			  }
 			}
+
+			// function switchTimeTitle(){
+			// 	var h = document.getElementById("header")
+			// 	if(document.settings.cntup.checked)
+			// }
 			
 			//残り時間を書き出す関数
 			function tmWrite(int){
